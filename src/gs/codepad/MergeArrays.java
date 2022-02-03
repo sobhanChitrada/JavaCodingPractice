@@ -1,6 +1,6 @@
 package gs.codepad;// Java program to Merge an array of
 // size n into another array of size m + n
-
+//https://www.geeksforgeeks.org/merge-one-array-of-size-n-into-another-one-of-size-mn/
 class MergeArrays {
 	/* Function to move m elements at the end of array
 	* mPlusN[] */

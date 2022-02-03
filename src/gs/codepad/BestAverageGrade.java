@@ -1,5 +1,6 @@
 package gs.codepad;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +8,7 @@ public class BestAverageGrade {
     public static void main(String[] args) {
         String[][] data = new String[][]{{"Bob","87"}, {"Mike", "100"},
                                           {"Jason","64"}, {"Mike", "22"}};
-        bestAverageGrade(data);
+        bestAverage(data);
     }
 
     //iterate the data and for each iteration first index is a name of the studnet which acts as key in the map
@@ -33,5 +34,37 @@ public class BestAverageGrade {
             bestGrade = Math.max(bestGrade, avgMarks[1]/avgMarks[0]);
         }
         System.out.println(bestGrade);
+    }
+    private static void bestAverage(String[][] data){
+        HashMap<String, int []> map = new HashMap<>();
+
+        for (String [] stu : data){
+            String name = stu[0];
+            int score = Integer.parseInt(stu[1]);
+            if(map.containsKey(name)){
+                map.get(name)[0]++;
+                map.get(name)[1] += score;
+            }else{
+                map.put(name, new int[]{1, score});
+            }
+        }
+        int bestGrade = -1;
+        /*for (int[] avgGrades : map.values()){
+            bestGrade = Math.max(bestGrade, avgGrades[1]/avgGrades[0]);
+        }*/
+        ArrayList<String> list = new ArrayList<>();
+        for (Map.Entry<String, int[]> entry: map.entrySet()) {
+            String name = entry.getKey();
+            int[] avgGrades = entry.getValue();
+            int avgGrade = avgGrades[1]/avgGrades[0];
+            if(bestGrade < avgGrade){
+                bestGrade = avgGrade;
+                list.clear();
+                list.add(name);
+            }else if(bestGrade == avgGrade){
+                list.add(name);
+            }
+        }
+        list.stream().forEach(System.out::println);
     }
 }

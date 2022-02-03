@@ -8,7 +8,6 @@ class MinimumDistanceBetween2Words {
 		if(w1.equals(w2)) {
 			return 0;
 		}
-
 		String[] words = s.split(" ");
 		int n = words.length, minDistance = n+1, i=0, prev=0;
 		for(i=0; i < n; i++){
@@ -27,32 +26,6 @@ class MinimumDistanceBetween2Words {
 			i++;
 		}
 		return minDistance;
-	}
-
-	static int minDistance_(String s, String w1, String w2){
-		if(w1.equals(w2)){
-			return 0;
-		}
-		String[] words = s.split(" ");
-		int n = words.length, prev = 0, min_distance = n+1;
-		int i = 0;
-		for (i = 0; i < n; i++){
-			if(words[i].equals(w1) || words[i].equals(w2)){
-				prev = i;
-				break;
-			}
-		}
-		while (i < n){
-			if(words[i].equals(w1) || words[i].equals(w2)) {
-				if((!words[prev].equals(words[i]) && (i-prev) < min_distance)){
-					min_distance = i -prev -1;
-				}
-				prev = i;
-			}
-			i++;
-		}
-
-		return min_distance;
 	}
 	static int distance(String s, String w1, String w2) {
 		if (w1.equals(w2)) {

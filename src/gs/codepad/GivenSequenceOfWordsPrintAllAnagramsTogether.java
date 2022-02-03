@@ -1,36 +1,32 @@
 package gs.codepad;// Java code tp print all anagrams together
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
-public class FindAnagrams {
+public class GivenSequenceOfWordsPrintAllAnagramsTogether {
 
-	private static ArrayList<ArrayList<String>> findAnagrams(ArrayList<String> list) {
-		HashMap<HashMap<Character, Integer>, ArrayList<String>> anaMap = new HashMap<>();
+	private static HashSet<HashSet<String>> findAnagrams(ArrayList<String> list) {
+		HashMap<HashMap<Character, Integer>, HashSet<String>> anaMap = new HashMap<>();
 		for (String s: list) {
 			HashMap<Character, Integer> map = new HashMap<>();
-				for(int i = 0; i < s.length(); i++){
-
+				for(int i = 0; i < s.length(); i++) {
 					Character c = s.charAt(i);
 					Integer count = map.get(c);
-					if(count == null){
+					if(count == null) {
 						map.put(c, 1);
-					}else{
+					} else {
 						map.put(c, ++count);
 					}
 				}
 
-				if(anaMap.containsKey(map)){
+				if(anaMap.containsKey(map)) {
 					anaMap.get(map).add(s);
-				}else{
-					ArrayList<String> al  = new ArrayList<>();
+				} else {
+					HashSet<String> al  = new HashSet<>();
 					al.add(s);
 					anaMap.put(map, al);
 				}
 		}
 
-		ArrayList<ArrayList<String>> lists = new ArrayList<>();
+		HashSet<HashSet<String>> lists = new HashSet<>();
 		for (HashMap map:anaMap.keySet()) {
 			lists.add(anaMap.get(map));
 		}
@@ -43,9 +39,8 @@ public class FindAnagrams {
 		ArrayList<String> list = new ArrayList<>();
 		list.add("cat");
 		list.add("dog");
-		list.add("ogd");
 		list.add("god");
-		list.add("atc");
+		list.add("cat");
 
 		System.out.println(findAnagrams(list));
 	}

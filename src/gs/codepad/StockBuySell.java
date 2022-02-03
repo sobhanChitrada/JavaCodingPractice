@@ -4,44 +4,8 @@ import java.util.ArrayList;
 
 class StockBuySell {
 
-  private static void stockBuySell(int price[], int n){
-    if( n == 1){
-      return;
-    }
-    ArrayList<Interval_> output = new ArrayList<>();
-    int i =0, count = 0;
-    while( i < n-1){
-      while ((i < n-1) && price[i+1] <= price[i]){
-        i++;
-      }
-      if(i == n-1 ){
-        break;
-      }
-      Interval_ in = new Interval_();
-      in.buy = i++;
-
-      while ((i < n) && price[i-1] <= price[i]){
-        i++;
-      }
-      in.sell = i-1;
-      output.add(in);
-      count++;
-    }
-    // print solution
-    if (count == 0)
-      System.out.println("There is no day when buying the stock "
-              + "will make profit");
-    else
-      for (int j = 0; j < count; j++)
-        System.out.println("Buy on day: " + output.get(j).buy
-                + "        "
-                + "Sell on day : " + output.get(j).sell);
-
-    return;
-  }
-
   // This function finds the buy sell schedule for maximum profit
-  void stockBuySell_(int price[], int n)
+  void stockBuySell(int price[], int n)
   {
     // Prices must be given for at least two days
     if (n == 1)
@@ -105,8 +69,45 @@ class StockBuySell {
     // function call
     stock.stockBuySell(price, n);
   }
+  private static void buyAndSell(int price[], int n){
+    if(n == 1){
+      return;
+    }
+    int i = 0, count =0;
+    ArrayList<Interval_> al = new ArrayList<>();
+    while (i < n){
+     while (i < n-1 && (price[i+1] <= price[i])){
+       i++;
+     }
+     if(i == n){
+       break;
+     }
+     Interval_ in = new Interval_();
+     in.buy = i++;
+
+     while (i < n && (price[i] >= price[i-1])){
+       i++;
+     }
+     in.sell = i-1;
+     al.add(in);
+     count++;
+    }
+    // print solution
+    if (count == 0)
+      System.out.println("There is no day when buying the stock "
+              + "will make profit");
+    else
+      for (int j = 0; j < count; j++)
+        System.out.println("Buy on day: " + al.get(j).buy
+                + "        "
+                + "Sell on day : " + al.get(j).sell);
+
+    return;
+  }
+
 }
 // Solution structure
 class Interval_ {
   int buy, sell;
 }
+

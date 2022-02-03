@@ -4,16 +4,7 @@ import java.io.*;
 
 class MaxProfitBuyAndSell
 {
-    static int maxProfit(int price[], int size){
-       int max_profit = 0;
-       for(int i = 1; i<size; i++){
-           if(price[i] > price[i-1]){
-               max_profit += price[i] - price[i-1];
-           }
-       }
-       return max_profit;
-    }
-    static int maxProfit_(int prices[], int size)
+    static int maxProfit(int prices[], int size)
     {
         // maxProfit adds up the difference between
         // adjacent elements if they are in increasing order
@@ -35,4 +26,15 @@ class MaxProfitBuyAndSell
         // function call
         System.out.println(maxProfit(price, n));
     }
+    static int maxProfit_(int price[], int size){
+        int max_profit = 0;
+        for(int i = 1; i<size; i++){
+            if(price[i] > price[i-1]){
+                max_profit += price[i] - price[i-1];
+            }
+        }
+        return max_profit;
+    }
 }
+
+//https://www.geeksforgeeks.org/stock-buy-sell/

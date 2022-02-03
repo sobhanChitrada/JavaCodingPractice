@@ -1,5 +1,10 @@
 package gs.codepad;
 
+/*
+Iterate the array from both sides,
+if the left value is max in the array find the left then add (left_max - current array value ) to result
+if the right side value then find the right_max value add (right_max - current index value in the array) to the result
+ */
 public class RainwaterTrapping {
     public static void main(String[] args) {
         int arr[] = { 0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1 };
@@ -15,7 +20,6 @@ public class RainwaterTrapping {
 
         // indices to traverse the array
         int lo = 0, hi = n - 1;
-
         while (lo <= hi) {
             if (arr[lo] < arr[hi]) {
                 if (arr[lo] > left_max)
@@ -23,15 +27,12 @@ public class RainwaterTrapping {
                     // update max in left
                     left_max = arr[lo];
                 else
-
                     // water on curr element =
                     // max - curr
                     result += left_max - arr[lo];
                 lo++;
-            }
-            else {
+            } else {
                 if (arr[hi] > right_max)
-
                     // update right maximum
                     right_max = arr[hi];
 
@@ -44,24 +45,27 @@ public class RainwaterTrapping {
         return result;
     }
     private static void maxWater(int arr[], int n){
-        int max_left = 0, max_right = 0, result = 0, lo = 0, hi = n-1;
+        int lo = 0, hi = n-1;
+        int max_water = 0;
+        int max_left = 0, max_right = 0;
         while(lo <= hi){
-            if(arr[lo] < arr[hi]){
-                if(max_left < arr[lo]){
+            if(arr[lo] < arr[hi]) {
+                if(arr[lo] > max_left) {
                     max_left = arr[lo];
-                }else{
-                    result += max_left - arr[lo];
+                } else {
+                    max_water += max_left - arr[lo];
                 }
                 lo++;
-            }else{
-                if(max_right < arr[hi]){
-                    max_right= arr[hi];
-                }else{
-                    result += max_right - arr[hi];
-                }
-                hi--;
+            } else {
+               if(arr[hi] > max_right){
+                   max_right = arr[hi];
+               }else{
+                   max_water += max_right - arr[hi];
+               }
+               hi--;
             }
         }
-        System.out.println(result);
+        System.out.println(max_water);
     }
 }
+//https://www.geeksforgeeks.org/trapping-rain-water/

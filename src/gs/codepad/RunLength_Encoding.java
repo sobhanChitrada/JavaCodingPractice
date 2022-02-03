@@ -1,5 +1,6 @@
 package gs.codepad;// Java program to implement run length encoding
 
+//https://www.geeksforgeeks.org/run-length-encoding/
 public class RunLength_Encoding {
 
     private static String runLen(String str){
