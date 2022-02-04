@@ -4,61 +4,63 @@ public class MaximumSumPathMatrixFromTopToBottom {
 
     static int maxSum(int[][] mat, int n) {
         int max = Integer.MIN_VALUE;
-        for (int i = n-2; i >=0; i--){
-            for (int j = 0; j < n; j++){
-                if(j == 0){
+        for (int i = n-2; i >=0; i--) {
+            for (int j = 0; j < n; j++) {
+                if(j == 0) {
+                    //if the first row take i+1, j+1 (increment both column and row)
                     mat[i][j] += mat[i+1][j+1];
-                }else if(j == n-1){
+                } else if(j == n-1) {
+                    //if the last row take i+1, j+1 (increment column and decrement row bcz it was already last so there
+                    // no row to increment)
                     mat[i][j] += mat[i+1][j-1];
-                }else{
+                } else {
+                    //if middles rows... compare take max of next or previous rows
                     mat[i][j] += Math.max(mat[i+1][j+1], mat[i+1][j-1]);
                 }
             }
         }
-        for (int i =0; i< n; i++){
+        for (int i =0; i< n; i++) {
             max = Math.max(max, mat[0][i]);
         }
         return max;
     }
 
-   static int maxSum_(int[][] mat, int n) {
-       for(int i=n-2;i>=0;i--)
-       {
-           for(int j=0;j<n;j++)
-           {
-               if(j==0) {
-                   mat[i][j]+=mat[i+1][j+1];
-               } else if(j==n-1) {
-                   mat[i][j]+=mat[i+1][j-1];
-               } else {
-                   mat[i][j]+=Math.max(mat[i+1][j-1],mat[i+1][j+1]);
-               }
-           }
-       }
-       int mx=Integer.MIN_VALUE;
-       for(int i=0;i<n;i++)
-       {
-           mx=Math.max(mx,mat[0][i]);
-       }
-       return mx;
+    static int maxSum_(int[][] mat, int n){
+        int max = Integer.MIN_VALUE;
+        for (int i = n-2; i >= 0; i--){
+            for (int j = 0; j < n; j++){
+                if(j == 0){
+                    mat[i][j] += mat[i+1][j+1];
+                }else if(j == n-1){
+                    mat[i][j] += mat[i+1][j-1];
+                }else {
+                    mat[i][j] += Math.max(mat[i+1][j+1], mat[i+1][j-1]);
+                }
+            }
+        }
+        for(int i =0; i< n; i++){
+            max = Math.max(max, mat[0][i]);
+        }
+        return max;
     }
     // Driver code
     public static void main (String[] args) {
 
-        int mat_[][] =  {{0, 100, 0, 0},
+        int mat[][] =  {{0, 100, 0, 0},
         {100, 0, 0, 0},
         {100, 0, 0, 0},
         {100, 0, 0, 0}};
 
 
         //28
-        int mat[][] = { { 5, 6, 1, 7 },
+        int mat_[][] = { { 5, 6, 1, 7 },
                 { -2, 10, 8, -1 },
                 { 3, -7, -9, 11 },
                 { 12, -4, 2, 6 } };
+
         int n = 4;
 
-        System.out.println("Maximum Sum = " + maxSum(mat_ , n));
+        System.out.println("Maximum Sum = " + maxSum_(mat_ , n));
 
     }
 }

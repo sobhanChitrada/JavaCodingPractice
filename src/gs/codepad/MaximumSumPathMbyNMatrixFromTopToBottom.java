@@ -22,6 +22,7 @@ class MaximumSumPathMbyNMatrixFromTopToBottom {
 
 
     public  static void sum(int[][]mat, int[] arr, int column, int row, int sum){
+        System.out.println("sum -- "+ sum  +"  column " +column +"  row  "+row);
         if(row < 0 || column < 0 || column > mat[0].length-1 ) {
             return;
         } else {
@@ -47,3 +48,9 @@ class MaximumSumPathMbyNMatrixFromTopToBottom {
         //sumi-=mat[row][column];
     }
 }
+
+
+
+
+// Contributed by Pramod Kumar
+
