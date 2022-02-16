@@ -4,7 +4,7 @@ import static java.lang.Math.max;
 
 class MaximumSumPathMbyNMatrixFromTopToBottom_GFG
 {
-    public static int N = 4, M = 6;
+    public static int N = 3, M = 3;
     // Function to calculate max path in matrix
     static int findMaxPath(int mat[][]) {
         // To find max val in first row
@@ -73,23 +73,23 @@ class MaximumSumPathMbyNMatrixFromTopToBottom_GFG
                 {9, 8, 7},
                 {4, 5, 6}};
 
-        System.out.println(findMaximumPath(mat));
+        System.out.println(findMaximumPath(mat_));
     }
 
     private static int findMaximumPath(int[][] mat) {
-        int res = -1;
-        for (int i = 1; i < N; i++){
-            for (int j = 0; j < M ; j++){
-                if(j > 0  && j < M-1){
-                    mat[i][j] += max(mat[i-1][j], max(mat[i-1][j+1], mat[i-1][j-1]));
+        int resp = -1;
+        for(int i = 1; i < N; i++){
+            for(int j =0; j <M; j++){
+                if(j>0 && j < M-1){
+                    mat[i][j] += max(mat[i-1][j], max(mat[i-1][j-1], mat[i-1][j+1]));
                 }else if(j > 0){
                     mat[i][j] += max(mat[i-1][j], mat[i-1][j-1]);
-                }else if(j < M-1){
+                }else if(j<M-1){
                     mat[i][j] += max(mat[i-1][j], mat[i-1][j+1]);
                 }
-                res = max(res, mat[i][j]);
+                resp = max(resp, mat[i][j]);
             }
         }
-        return res;
+        return resp;
     }
 }

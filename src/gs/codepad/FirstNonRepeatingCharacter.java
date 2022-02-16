@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class FirstNonRepeatingCharacter {
     public static void main(String[] args) {
-        findFirstNonRepeatingChar("geeksffzorgeeks");
+        findFirstNonRepeatingChar("geeksfzorgeeks");
     }
 
     private static void findFirstNonRepeatingChar(String string){

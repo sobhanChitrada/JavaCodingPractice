@@ -85,41 +85,43 @@ class MinimumStepsToReachTargetByAKnight {
     }
 
     private static int minStep_(int[] knightPos, int[] targetPos, int n) {
-
         int dx[] = {-1, -2, 1, 2, -1, -2, 1, 2};
         int dy[] = {-2, -1, -2, -1, 2, 1, 2, 1};
-
-        Vector<cell> q= new Vector<>();
+        Vector<cell> q = new Vector<>();
         q.add(new cell(knightPos[0], knightPos[1], 0));
 
         boolean visits[][] = new boolean[n+1][n+1];
-        for (int i=1; i <= n; i++){
-            for (int j=1; j<=n; j++){
+        for (int i = 1; i <= n; i++){
+            for (int j = 1; j <= n; j++){
                 visits[i][j] = false;
             }
         }
+
         visits[knightPos[0]] [knightPos[1]] = true;
-        cell t;
+
+        cell c;
         while (!q.isEmpty()){
-            t = q.firstElement();
+            c = q.firstElement();
             q.remove(0);
-            if(t.x == targetPos[0] && t.y == targetPos[1]){
-                return t.dis;
+            if(c.x == targetPos[0] && c.y == targetPos[1]){
+                return c.dis;
             }
-            for (int i = 0; i < 8; i++){
-                int newX = t.x + dx[i];
-                int newY = t.y + dy[i];
+            for (int i=0; i<8; i++){
+                int newX = c.x + dx[i];
+                int newY = c.y + dy[i];
                 if(isInside(newX, newY, n) && !visits[newX][newY]){
-                    visits[newX][newY] = true;
-                    q.add(new cell(newX, newY, t.dis+1));
+                    q.add(new cell(newX, newY, c.dis+1));
+                    visits[newX] [newY] = true;
                 }
             }
         }
 
-        return 1;
+
+        return -1;
     }
-    private static boolean isInside_(int x, int y, int n){
-        if(1<= x && x <= n && 1<=y && y <=n){
+
+    private static boolean isIndise_(int x, int y, int n){
+        if(1 <= x && x <= n && 1 <= y && y <= n){
             return true;
         }
         return false;

@@ -10,7 +10,7 @@ public class ArrangeArrayBiggestNumber {
     public static void main(String[] args) {
         Vector<String> arr;
         arr = new Vector<>();
-        arr.add("1");
+       /* arr.add("1");
         arr.add("34");
         arr.add("3");
         arr.add("98");
@@ -19,17 +19,16 @@ public class ArrangeArrayBiggestNumber {
         arr.add("45");
         arr.add("4");
         arr.add("12");
-        arr.add("121");
+        arr.add("121");*/
         // output should be 6054854654
 
-        /*
 
         arr.add("54");
         arr.add("546");
         arr.add("548");
         arr.add("60");
 
-        Input :  [1, 34, 3, 98, 9, 76, 45, 4, 12, 121]
+       /* Input :  [1, 34, 3, 98, 9, 76, 45, 4, 12, 121]
         Output : 99876454343121211
 
         Input :  [12, 121]
@@ -42,9 +41,11 @@ public class ArrangeArrayBiggestNumber {
         MyCompararot mc = new MyCompararot();
         Collections.sort(arr, mc);
         Iterator it = arr.iterator();
-        while(it.hasNext()){
-            System.out.print(it.next());
+        String result = "";
+        while(it.hasNext()) {
+            result += it.next();
         }
+        System.out.println(result);
     }
 }
 

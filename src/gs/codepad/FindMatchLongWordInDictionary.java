@@ -5,13 +5,22 @@ import java.util.*;
 public class FindMatchLongWordInDictionary {
 
     public static void main(String[] args) {
-        List<String> dicto = new ArrayList<>();
+        /*List<String> dicto = new ArrayList<>();
         dicto.add("ale");
-        dicto.add("eppla");
+        dicto.add("apple");
         dicto.add("paple");
         dicto.add("monkey");
         dicto.add("plea");
         String letters = "abpcplea";
+        System.out.println(longestWord(dicto, letters));*/
+        List<String> dicto = new ArrayList<>();
+        dicto.add("to");
+        dicto.add("banana");
+        dicto.add("toe");
+        dicto.add("dogs");
+        dicto.add("ababcd");
+        dicto.add("elephant");
+        String letters = "eot";
         System.out.println(longestWord(dicto, letters));
     }
 

@@ -1,51 +1,9 @@
 package gs.codepad;
 
 import java.util.HashMap;
+import java.util.HashSet;
 
 public class FractionToDecimal {
-    public static void main(String[] args) {
-        System.out.println(fractionToStringDecimal(2, 3));
-    }
-    private static String fractionToStringDecimal(int numerator, int denominator){
-
-        if(numerator == 0){
-            return "0";
-        }
-        if(denominator == 0){
-            return "";
-        }
-        String result = "";
-        if((numerator < 0) ^ (denominator < 0)){
-            result += "-";
-        }
-
-        long num = numerator, den = denominator;
-        long res = num/den;
-        result += String.valueOf(res);
-
-        long reminder = (num%den)* 10;
-
-        if(reminder == 0){
-            return result;
-        }else {
-            result += ".";
-        }
-        HashMap<Long, Integer> map = new HashMap();
-        while(reminder == 0){
-            if(map.containsKey(reminder)){
-                int sep = map.get(reminder);
-                String part1 = result.substring(0, sep);
-                String part2 = result.substring(sep, result.length());
-                result = part1 + "(" + part2 + ")";
-            }
-            map.put(reminder, result.length());
-            res = reminder / den;
-            reminder = (reminder%den) * 10;
-            result = String.valueOf(res);
-        }
-        return "";
-    }
-
     public static String fractionToDecimal(int numerator, int denominator) {
         if (numerator == 0)
             return "0";
@@ -53,7 +11,6 @@ public class FractionToDecimal {
             return "";
 
         String result = "";
-
         // is result is negative
         if ((numerator < 0) ^ (denominator < 0)) {
             result += "-";
@@ -92,6 +49,49 @@ public class FractionToDecimal {
             result += String.valueOf(res);
             remainder = (remainder % den) * 10;
         }
+        return result;
+    }
+    public static void main(String[] args) {
+        System.out.println(fractionToDecimal_(269, 3));
+    }
+
+    private static String fractionToDecimal_(int numerator, int denominator) {
+
+       if(numerator == 0){
+           return "0";
+       }
+       if(denominator == 0){
+           return "";
+       }
+       String result = "";
+       if((numerator<0) ^  (denominator<0) ){
+           result += "-";
+       }
+
+       int num = numerator/denominator;
+       result += String.valueOf(num);
+
+       int reminder = numerator%denominator * 10;
+
+       if(reminder == 0){
+           return result;
+       }
+
+        HashMap<Integer, Integer> map = new HashMap<>();
+       result += ".";
+       while (reminder != 0){
+           if(map.containsKey(reminder)){
+               int separator = map.get(reminder);
+               String s1 = result.substring(0, separator);
+               String s2 = result.substring(separator, result.length());
+               result = s1+"("+s2+")";
+               return result;
+           }
+           map.put(reminder, result.length());
+           num = reminder/denominator;
+           result+=String.valueOf(num);
+           reminder=reminder%denominator*10;
+       }
         return result;
     }
 }

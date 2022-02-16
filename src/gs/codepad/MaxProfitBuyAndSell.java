@@ -26,15 +26,19 @@ class MaxProfitBuyAndSell
         // function call
         System.out.println(maxProfit(price, n));
     }
-    static int maxProfit_(int price[], int size){
-        int max_profit = 0;
-        for(int i = 1; i<size; i++){
-            if(price[i] > price[i-1]){
-                max_profit += price[i] - price[i-1];
+
+    private static int maxProfit_(int[] price, int n) {
+
+        int maxprofit =0;
+
+        for (int i=0; i<n-1; i++){
+            if(price[i] < price[i+1]){
+                maxprofit += price[i+1]-price[i];
             }
         }
-        return max_profit;
+        return maxprofit;
     }
+
 }
 
 //https://www.geeksforgeeks.org/stock-buy-sell/

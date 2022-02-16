@@ -2,7 +2,7 @@ package gs.codepad;
 
 public class MaxRepeatingConsicutive {
     public static void main(String[] args) {
-        System.out.println(maxRepeatingChar("aaaaasbccccccccccccccccccdddddddddddd"));
+        System.out.println(maxRepeatingChar("aabbbbeeeeccdddddddddddd"));
     }
     private static char maxRepeatingChar(String str) {
         char res = str.charAt(0);

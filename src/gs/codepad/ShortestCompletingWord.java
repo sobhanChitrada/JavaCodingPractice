@@ -11,7 +11,7 @@ public class ShortestCompletingWord {
         int minLen = Integer.MAX_VALUE;
         HashMap<Character, Integer> map = new HashMap<>();
         for (char c: licensePlate.toLowerCase().toCharArray()){
-            if(c >= 'a' && c <= 'z'){
+            if(c >= 'a' && c <= 'z') {
                 increment(map, c, 1);
             }
         }
@@ -29,7 +29,7 @@ public class ShortestCompletingWord {
         }
         return minWord;
     }
-    private static void increment(HashMap<Character, Integer> map, Character c, int delta){
+    private static void increment(HashMap<Character, Integer> map, Character c, int delta) {
         int newValue = map.getOrDefault(c, 0);
         newValue += delta;
         if(newValue == 0){
@@ -38,43 +38,12 @@ public class ShortestCompletingWord {
             map.put(c, newValue);
         }
     }
-    public static String shortestCompletingWord_(String licensePlate, String[] words) {
-        int minLen = Integer.MAX_VALUE;
-        String minLenWord = "";
-        HashMap<Character,Integer> map = new HashMap<>();
-        for(char c : licensePlate.toLowerCase().toCharArray()) {
-            if(c >= 'a' && c <= 'z') {
-                increment(map,c,1);
-            }
-        }
-        for(String word : words) {
-            if(word.length() < minLen) {
-                HashMap<Character,Integer> charMap = (HashMap<Character,Integer>)map.clone();
-                for(char c : word.toCharArray()) {
-                    increment(charMap,c,-1);
-                }
-                if(charMap.size() == 0) {
-                    minLen = word.length();
-                    minLenWord = word;
-                }
-            }
-        }
-        return minLenWord;
-    }
-
-    private static void increment(HashMap<Character,Integer> map, char key, int delta) {
-        int newVal = map.getOrDefault(key,0) ;
-        newVal += delta;
-        if(newVal == 0) {
-            map.remove(key);
-        } else if(newVal > 0) {
-            map.put(key,newVal);
-        }
-    }
 
     public static void main(String[] args) {
-        String licensePlate = "1s3 PSt"; String words[] = new String[]{"step","steps","stripe","stepple", "sspt"};
-        System.out.println("sha   "+shortestCompletingWord(licensePlate, words));
+        //String licensePlate = "1s3 PSt"; String words[] = new String[]{"step","steps","stripe","stepple"};
+
+        String licensePlate = "1s3 456"; String words[] = {"looks","stew","show","pest"};
+        System.out.println(shortestCompletingWord(licensePlate, words));
     }
     //https://leetcode.com/problems/shortest-completing-word/discuss/110137/Java-Solution-using-character-Array
 }

@@ -47,11 +47,31 @@ public class PangramChecking {
     // Driver Code
     public static void main(String[] args)
     {
-        String str = "The quick brown fox jumps over the dog";
+        String str = "The quick brown fox jumps over the lazy dog";
+        //The quick brown fox jumps over the lazy dog
 
-        if (checkPangram(str) == true)
+        if (checkPangram_(str) == true)
             System.out.print(str + " is a pangram.");
         else
             System.out.print(str + " is not a pangram.");
+    }
+
+    private static boolean checkPangram_(String str) {
+        boolean charIdex[]=new boolean[26];
+        int index=0;
+        for(int i=0; i<str.length(); i++){
+            if('A' <= str.charAt(i) && str.charAt(i)<='Z'){
+                index = str.charAt(i) - 'A';
+            }else  if('a' <= str.charAt(i) && str.charAt(i)<='z'){
+                index = str.charAt(i) - 'a';
+            }
+            charIdex[index]=true;
+        }
+        for (int i=0; i<charIdex.length; i++){
+            if(charIdex[i] == false){
+                return false;
+            }
+        }
+        return true;
     }
 }

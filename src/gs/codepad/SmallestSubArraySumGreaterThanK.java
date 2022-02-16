@@ -18,47 +18,39 @@ class SmallestSubArraySumGreaterThanK {
         int ans = N+1; // N+1 is impossible
         Deque<Integer> monoq = new LinkedList(); //opt(y) candidates, as indices of P
 
-        for (int y = 0; y < P.length; ++y) {
-            // Want opt(y) = largest x with P[x] <= P[y] - K;
-            while (!monoq.isEmpty() && P[y] <= P[monoq.getLast()])
+        for (int i = 0; i < P.length; ++i) {
+            //Q is monoQ, the values should always get increased ..
+            //so if the next element in array larger than the lastElement in the Q, the remove until then
+            while (!monoq.isEmpty() && P[i] <= P[monoq.getLast()])
                 monoq.removeLast();
-            while (!monoq.isEmpty() && P[y] >= P[monoq.getFirst()] + K)
-                ans = Math.min(ans, y - monoq.removeFirst());
+            //if the cur_sum (current element in the array) is reached more than the sum the remove the first element
+            while (!monoq.isEmpty() && P[i] >= P[monoq.getFirst()] + K)
+                ans = Math.min(ans, i - monoq.removeFirst());
 
-            monoq.addLast(y);
+            monoq.addLast(i);
         }
 
         return ans < N+1 ? ans : -1;
     }
-    private static int shortestSubArray(int arr[], int sum){
-        int n = arr.length;
-        int result = n +1;
-        long p[] = new long[n+1];
-        for (int i = 0; i < n; i++)
-            p[i+1] = p[i] + (long)arr[i];
-
-        Deque<Integer> q = new LinkedList<>();
-
-        for(int i = 0; i < n; i++){
-            while (!q.isEmpty() && p[i] <= p[q.getLast()]){
-                q.removeLast();
-            }
-            while (!q.isEmpty() && p[i] >= p[q.getFirst()]+sum){
-                result = Math.min(result, i - q.removeFirst());
-            }
-            q.addLast(i);
-        }
-
-
-        return result;
-    }
 
     public static void main(String[] args) {
-        /*int[] arr = {2, -1, 2};
-        int sum = 3;*/
+        int[] arr = {2, -1, 2};
+        int sum = 3;  //3
 
-        int[] arr = {2, 7, 3, -8, 4, 10};
-        int sum = 12;
+       /* int[] arr = {2, 7, 3, -8, 4, 10};
+        int sum = 12;*/
+
+        /*int[] arr = {1, 10, 5, 2, 7};
+        int sum = 9; *///output  = 1
+
+        /*int arr[] = {1, 4, 45, 6, 0, 19};
+        int sum  =  51;*/ //Output: 3
+
+        /*int arr[] = {1, 11, 100, 1, 0, 200, 3, 2, 1, 250};
+        int sum = 280; *///Output: 4
+
+        /*int arr[] = {1, 2, 4}; //not possible
+        int sum = 8;  */  //not possible
 
         System.out.println(shortestSubarray(arr, sum));
     }

@@ -60,7 +60,23 @@ public class MaximumSumPathMatrixFromTopToBottom {
 
         int n = 4;
 
-        System.out.println("Maximum Sum = " + maxSum_(mat_ , n));
+        System.out.println("Maximum Sum = " + findMaxSumPath(mat_ , n));
 
+    }
+    private static int findMaxSumPath(int mat[][], int n) {
+        int resp = -1;
+        for (int i = 1; i < n; i++){
+            for (int j=0; j<n; j++){
+                if(j > 0 && j < n-1){
+                    mat[i][j] += Math.max(mat[i-1][j-1], mat[i-1][j+1]);
+                }else if(j>0) {
+                    mat[i][j] += mat[i-1][j-1];
+                } else if(j<n-1) {
+                    mat[i][j] += mat[i-1][j+1];
+                }
+                resp = Math.max(resp, mat[i][j]);
+            }
+        }
+        return resp;
     }
 }

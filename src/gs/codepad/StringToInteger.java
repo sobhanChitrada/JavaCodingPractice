@@ -11,9 +11,9 @@ public class StringToInteger {
         string = string.trim();
         char flag = '+';
         int index = 0;
-        if(string.charAt(0) == '+'){
+        if(string.startsWith("+")){
             index++;
-        }else if(string.charAt(0) == '-'){
+        }else if(string.startsWith("-")){
             flag = '-';
             index++;
         }
@@ -35,7 +35,7 @@ public class StringToInteger {
         }
     }
     public static void main(String[] args) {
-       String s = " sdsd 4193 with words";
+       String s = " -42";
         System.out.println(atoi(s));
     }
 }
